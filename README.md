@@ -1,5 +1,5 @@
 # inter
-notes so local you can take them to the grave. also modern, notion-compatible, useful etc. really just try it.
+notetaking so local you can take it to the grave. also modern, notion-compatible, useful etc. really just try it.
 
 ## platforms
 * Mobile: Android
