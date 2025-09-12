@@ -5,14 +5,16 @@ class EditPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(16.0),
-      child: const Center(
-        child: Text(
-          'Main Note Editor Area',
-          style: TextStyle(fontSize: 24, color: Colors.grey),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      child: TextField(
+        maxLines: null,
+        expands: true,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: 'Start writing your note...',
         ),
+        style: TextStyle(fontSize: 16, height: 1.5),
       ),
     );
   }
