@@ -37,6 +37,7 @@ dependencies:
   flutter_riverpod: ^3.0.0
   go_router: ^16.2.1
   drag_and_drop_lists: ^0.4.2
+  flutter_markdown: ^0.7.7+1
 
 dev_dependencies:
   flutter_test:
