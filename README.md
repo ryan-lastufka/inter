@@ -12,5 +12,14 @@ notetaking so local you can take it to the grave. also modern, notion-compatible
 * Notion integration - export files to Notion. 
 * Non-intrusive text analysis features tell you more about what you're writing without being buried in menus.  
 
+## run instructions
+
+**first time setup:**
+* `flutter pub get`
+
+**run:**
+* Run Android Virtual Device via Android Studio
+* `flutter run`
+
 ## legal
 All rights reserved, © 2025 Ryan Lastufka. 
