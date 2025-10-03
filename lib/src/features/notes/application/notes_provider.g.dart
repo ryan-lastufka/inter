@@ -186,3 +186,42 @@ final class SelectedNoteProvider
 }
 
 String _$selectedNoteHash() => r'f83f31fec0ff8a8166e927422b649d922a1aa489';
+
+@ProviderFor(noteAnalysis)
+const noteAnalysisProvider = NoteAnalysisProvider._();
+
+final class NoteAnalysisProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AnalysisResult?>,
+          AnalysisResult?,
+          FutureOr<AnalysisResult?>
+        >
+    with $FutureModifier<AnalysisResult?>, $FutureProvider<AnalysisResult?> {
+  const NoteAnalysisProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'noteAnalysisProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$noteAnalysisHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AnalysisResult?> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AnalysisResult?> create(Ref ref) {
+    return noteAnalysis(ref);
+  }
+}
+
+String _$noteAnalysisHash() => r'02d41dcac97c90046bc7d19dbeac91a938f2d3c7';

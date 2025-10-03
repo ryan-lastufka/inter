@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:inter/src/features/analysis/application/analysis_service.dart';
 import 'package:inter/src/features/notes/data/notes_service.dart';
 import '../domain/folder_item.dart';
 import '../domain/note_item.dart';
@@ -120,4 +121,14 @@ Future<NoteItem?> selectedNote(Ref ref) async {
     }
   }
   return null;
+}
+
+@riverpod
+Future<AnalysisResult?> noteAnalysis(Ref ref) async {
+  final note = await ref.watch(selectedNoteProvider.future);
+  if (note == null) {
+    return null;
+  }
+  final analysisService = await ref.watch(analysisServiceProvider.future);
+  return analysisService.analyze(note.content);
 }
