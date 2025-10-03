@@ -48,14 +48,14 @@ class _EditPanelState extends ConsumerState<EditPanel> {
           _isInitialized = true;
         }
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(
             title: Text(
               note.title,
             ), 
             backgroundColor: Colors.transparent,
             elevation: 0,
-            foregroundColor: Colors.black87,
+            foregroundColor: Theme.of(context).colorScheme.onSurface,
           ),
           body: Column(
             mainAxisSize: MainAxisSize.min,

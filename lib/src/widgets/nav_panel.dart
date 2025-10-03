@@ -14,12 +14,12 @@ class NavPanel extends ConsumerWidget {
     final notesAsyncValue = ref.watch(notesProvider);
     final selectedNoteId = ref.watch(selectedNoteIdProvider);
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
       appBar: AppBar(
         title: const Text('Inter', style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        foregroundColor: Colors.black87,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
       ),
       body: notesAsyncValue.when(
         data: (folders) => _buildListsView(context, ref, folders, selectedNoteId),
@@ -50,15 +50,15 @@ class NavPanel extends ConsumerWidget {
       },
       listDragHandle: const DragHandle(
         verticalAlignment: DragHandleVerticalAlignment.top,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: Icon(Icons.drag_handle, color: Colors.grey),
+        child: Padding( 
+          padding: EdgeInsets.symmetric(horizontal: 16.0), 
+          child: Icon(Icons.drag_handle), 
         ),
       ),
       itemDragHandle: DragHandle(
         child: Padding(
           padding: const EdgeInsets.only(right: 10),
-          child: Icon(Icons.drag_indicator, color: Colors.grey[400]),
+          child: Icon(Icons.drag_indicator, color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha:0.5)),
         ),
       ),
     );
@@ -70,11 +70,12 @@ class NavPanel extends ConsumerWidget {
         height: 60,
         margin: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
-          color: Colors.grey.withValues(alpha: 0.4),
+          color: Theme.of(context).colorScheme.surfaceContainer,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(
-          child: Text('Drop notes here', style: TextStyle(color: Colors.grey[500])),
+          child: Text('Drop notes here',
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
         ),
       ),
     );
@@ -114,7 +115,7 @@ class NavPanel extends ConsumerWidget {
             leading: const Icon(Icons.notes_rounded),
             title: Text(note.title),
             selected: note.id == selectedNoteId,
-            selectedTileColor: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+            selectedTileColor: Theme.of(context).colorScheme.primaryContainer.withValues(alpha:0.4),
             onTap: () => ref.read(selectedNoteIdProvider.notifier).select(note.id),
           ),
         ),

@@ -4,14 +4,25 @@ import 'package:markdown/markdown.dart' as md;
 
 class RenderedSection extends StatelessWidget {
   final String text;
-  const RenderedSection({Key? key, required this.text}) : super(key: key);
+  const RenderedSection({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    final baseTextStyle = const TextStyle(
-      fontSize: 16,
-      height: 1.5,
-      color: Colors.black87,
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+    final customMarkdownStyle = MarkdownStyleSheet.fromTheme(theme).copyWith(
+      p: const TextStyle(fontSize: 16, height: 1.5),
+      code: TextStyle(
+        color: isDarkMode ? Colors.deepOrange.shade300 : Colors.deepOrange.shade800,
+        backgroundColor: theme.colorScheme.surfaceContainerHighest,
+        fontFamily: 'monospace',
+        fontSize: 14,
+      ),
+      blockquoteDecoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainer,
+        border: Border(left: BorderSide(width: 5, color: theme.dividerColor)),
+        borderRadius: BorderRadius.circular(4),
+      ),
     );
     return Container(
       padding: const EdgeInsets.all(8.0),
@@ -24,9 +35,7 @@ class RenderedSection extends StatelessWidget {
             ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes,
           ],
         ),
-        styleSheet: MarkdownStyleSheet.fromTheme(
-          Theme.of(context),
-        ).copyWith(p: baseTextStyle),
+        styleSheet: customMarkdownStyle,
       ),
     );
   }

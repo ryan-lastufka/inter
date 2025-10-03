@@ -5,11 +5,11 @@ class EditorSection extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
   const EditorSection({
-    Key? key,
+    super.key,
     required this.text,
     this.onChanged,
     this.onEditingComplete,
-  }) : super(key: key);
+  });
 
   @override
   State<EditorSection> createState() => _EditorSectionState();
@@ -54,7 +54,7 @@ class _EditorSectionState extends State<EditorSection> {
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.grey.shade300,
+          color: Theme.of(context).colorScheme.outline,
           width: 1.0,
         ),
         borderRadius: BorderRadius.circular(4.0),

@@ -44,6 +44,8 @@ dependencies:
   flutter_riverpod: ^3.0.1
   riverpod_annotation: ^3.0.1
   riverpod_generator: ^3.0.1
+  markdown: ^7.3.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

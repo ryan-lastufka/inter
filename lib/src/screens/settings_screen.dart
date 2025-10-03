@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:inter/src/features/settings/settings_provider.dart';
 
 enum StorageOption { local, googleDrive }
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   StorageOption _storageOption = StorageOption.local;
-  bool _darkModeEnabled = false;
   String _fontSize = 'Medium';
   final TextEditingController _notionApiKeyController = TextEditingController();
 
@@ -32,15 +33,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: const Text('Settings'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.pop(),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
         elevation: 1,
       ),
       body: ListView(
@@ -91,12 +91,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: 'Appearance',
             children: [
               SwitchListTile(
-                title: const Text('Enable Dark Mode'),
-                value: _darkModeEnabled,
-                onChanged: (bool value) {
-                  setState(() {
-                    _darkModeEnabled = value;
-                  });
+                title: const Text('Dark Mode'),
+                value: ref.watch(appSettingsProvider).themeMode == ThemeMode.dark,
+                onChanged: (bool value) async {
+                  ref
+                      .read(appSettingsProvider.notifier)
+                      .updateThemeMode(value ? ThemeMode.dark : ThemeMode.light);
                 },
               ),
               ListTile(

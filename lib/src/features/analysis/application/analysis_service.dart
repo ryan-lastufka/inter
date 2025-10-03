@@ -50,10 +50,10 @@ class AnalysisService {
     }
     final sentenceCount = _countSentences(text);
     final difficultWords = _countDifficultWords(text);
-    final p_dw = (difficultWords / wordCount) * 100;
+    final pDw = (difficultWords / wordCount) * 100;
     final asl = wordCount / sentenceCount;
-    double score = (0.1579 * p_dw) + (0.0496 * asl);
-    if (p_dw > 5) {
+    double score = (0.1579 * pDw) + (0.0496 * asl);
+    if (pDw > 5) {
       score += 3.6365;
     }
     if (score <= 4.9) return '4th grade and below';

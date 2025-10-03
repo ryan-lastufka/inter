@@ -9,12 +9,12 @@ class DetailPanel extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: const Text('Details'),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        foregroundColor: Colors.black87,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
         actions: [
           IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
         ],
@@ -62,7 +62,7 @@ class DetailPanel extends ConsumerWidget {
                         Text(
                           'Summary feature coming soon...', 
                           style: TextStyle(
-                            color: Colors.grey[700],
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                             height: 1.4,
                           ),
                         ),
